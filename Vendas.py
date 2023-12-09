@@ -2,7 +2,7 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 from streamlit_extras.metric_cards import style_metric_cards
-import locale
+
 
 
 # Função para carregar dados
@@ -17,9 +17,6 @@ def carregar_dados():
 # Função para rodar a aplicação
 
 def main():
-
-    # Configurando a localidade monetária
-    locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
 
     # Configuração de Página
     st.set_page_config(layout = 'wide', page_title='Relatório Geral', page_icon='📊')
@@ -46,11 +43,11 @@ def main():
     # Adicionando as colunas para os cartões
     col1, col2, col3 = st.columns(3)
 
-    total_custo = df_filtrado['Custo'].sum()
-    total_custo = locale.currency(total_custo, grouping=True)
+    total_custo = df_filtrado["Custo"].sum()
+    total_custo = f"R$ {total_custo:,.2f}"
 
-    total_lucro = df_filtrado['Lucro'].sum()
-    total_lucro = locale.currency(total_lucro, grouping=True)
+    total_lucro = df_filtrado["Lucro"].sum()
+    total_lucro = f"R$ {total_lucro:,.2f}"
 
     total_clientes = df_filtrado['ID Cliente'].nunique()
 
