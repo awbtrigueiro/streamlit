@@ -1,0 +1,6 @@
+pandas
+plotly.express
+streamlit
+locale
+streamlit-extras
+openpyxl
