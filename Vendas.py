@@ -67,7 +67,7 @@ def main():
 
     with col1:
 
-        produtos_vendidos_marca = df_filtrado.groupby('Marca').sum()['Quantidade'].sort_values(ascending=True).reset_index()
+        produtos_vendidos_marca = df_filtrado.groupby('Marca')['Quantidade'].sum().sort_values(ascending=True).reset_index()
 
         figura_marca_quantidade = px.bar(produtos_vendidos_marca, x='Quantidade', y='Marca', orientation = 'h',
                                          title = 'Total de produtos vendidos por marca',
@@ -82,7 +82,7 @@ def main():
     # Adicionando gráfico de rosca
     with col2:
 
-        lucro_categoria = df_filtrado.groupby('Categoria').sum()['Lucro'].reset_index()
+        lucro_categoria = df_filtrado.groupby('Categoria')['Lucro'].sum().reset_index()
 
         figura_lucro_categoria = px.pie(lucro_categoria, values = 'Lucro', names = 'Categoria', hole = 0.6,
                                         title = 'Lucro por Categoria',
@@ -94,7 +94,7 @@ def main():
         st.plotly_chart(figura_lucro_categoria, use_container_width=True)
 
 
-    lucro_mes_ano_categoria = df_filtrado.groupby(['mes_ano', 'Categoria']).sum()['Lucro'].reset_index()
+    lucro_mes_ano_categoria = df_filtrado.groupby(['mes_ano', 'Categoria'])['Lucro'].sum().reset_index()
 
     figura_lucro_mes_ano_categoria = px.line(lucro_mes_ano_categoria, x='mes_ano', y='Lucro',
                                              title='Lucro x Mês por Ano x Lucro',
